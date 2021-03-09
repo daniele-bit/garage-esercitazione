@@ -20,7 +20,7 @@ public class GarageController {
 
     @RequestMapping("/inserisci-auto")
     @ResponseBody
-    public ListaAutoDto insersci(@RequestBody AutomobileReqDto dto) {
+    public ListaAutoDto inserisci(@RequestBody AutomobileReqDto dto) {
         return garageservice.inserisci(dto.getAutomobile());
     }
 
