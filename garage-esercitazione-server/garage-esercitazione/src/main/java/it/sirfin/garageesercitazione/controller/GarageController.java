@@ -6,6 +6,7 @@ import it.sirfin.garageesercitazione.dto.ListaAutoDto;
 import it.sirfin.garageesercitazione.service.GarageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,21 +20,27 @@ public class GarageController {
 
     @RequestMapping("/inserisci-auto")
     @ResponseBody
-
-    public ListaAutoDto insersci(@ResponseBody AutomobileReqDto dto) {}
-
-    @RequestMapping("/inserisci-auto")
-    @ResponseBody
-    public ListaAutoDto rimuovi(@ResponseBody AutomobileReqDto dto) {
+    public ListaAutoDto insersci(@RequestBody AutomobileReqDto dto) {
+        return garageservice.inserisci(dto.getAutomobile());
     }
 
-    @RequestMapping("/inserisci-auto")
+    @RequestMapping("/rimuovi-auto")
     @ResponseBody
-    public ListaAutoDto aggiorna() {}
+    public ListaAutoDto rimuovi(@RequestBody AutomobileReqDto dto) {
+        return garageservice.rimuovi(dto.getAutomobile());
+    }
 
-    @RequestMapping("/inserisci-auto")
+    @RequestMapping("/aggiorna")
     @ResponseBody
-    public ListaAutoDto ricerca(@ResponseBody CriterioRicercaDto dto) {}
+    public ListaAutoDto aggiorna() {
+        return garageservice.aggiorna();
+    }
+
+    @RequestMapping("/ricerca-auto")
+    @ResponseBody
+    public ListaAutoDto ricerca(@RequestBody CriterioRicercaDto dto) {
+     return garageservice.ricerca(dto.getStringa());
+    }
 
 
 }

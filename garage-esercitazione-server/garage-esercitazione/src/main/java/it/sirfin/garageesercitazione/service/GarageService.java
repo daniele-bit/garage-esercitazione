@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface GarageService {
 
-    ListaAutoDto insersci(Automobile auto);
+    ListaAutoDto inserisci(Automobile auto);
 
     ListaAutoDto rimuovi(Automobile auto);
 

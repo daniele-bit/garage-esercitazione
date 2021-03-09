@@ -3,28 +3,40 @@ package it.sirfin.garageesercitazione.serviceimpl;
 
 import it.sirfin.garageesercitazione.dto.ListaAutoDto;
 import it.sirfin.garageesercitazione.model.Automobile;
+import it.sirfin.garageesercitazione.repository.AutomobileRepository;
 import it.sirfin.garageesercitazione.service.GarageService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GarageServiceImpl implements GarageService{
 
+    @Autowired
+    AutomobileRepository automobileRepository;
+    
     @Override
-    public ListaAutoDto insersci(Automobile auto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ListaAutoDto inserisci(Automobile auto) {
+         automobileRepository.save(auto);
+         return aggiorna();
     }
 
     @Override
     public ListaAutoDto rimuovi(Automobile auto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        automobileRepository.delete(auto);
+        return aggiorna();
     }
 
     @Override
     public ListaAutoDto aggiorna() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Automobile> lista =  automobileRepository.findAll();
+        return new ListaAutoDto(lista);
     }
 
     @Override
     public ListaAutoDto ricerca(String stringa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Automobile> lista = automobileRepository.findByTargaContainsOrModelloContains(stringa, stringa);
+        return new ListaAutoDto(lista);
     }
     
 }
